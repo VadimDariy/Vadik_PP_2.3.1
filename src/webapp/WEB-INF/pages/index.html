@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <title>Пользователи</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Опции</th>
+        </tr>
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.age}"></td>
+                <td>
+                    <a th:href="@{/edit(id=${user.id})}" th:text="Изменить"></a>
+                    <form th:action="@{/delete/(id=${user.id})}" th:method="post">
+                        <button type='submit' name='your_name' value='your_value' class='btn-link'>Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<a href="add">Add new user</a>
+</body>
+</html>
+
+<!--
+         Запрашиваемый код представляет собой HTML-код с атрибутами Thymeleaf. Разберем каждую строку по порядку:
+
+ 1. <!DOCTYPE html> - Это объявление типа документа (Document Type Declaration), указывающее на то, что документ
+                      является HTML-страницей.
+
+ 2. <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> - Это открывающий тег для
+                      HTML-документа, который содержит атрибуты xmlns для пространств имен XML и Thymeleaf.
+
+ 3. <html lang="en"> - Этот тег указывает на язык документа, в данном случае "en" для английского.
+
+ 4. <head> - Тег, обозначающий начало секции заголовка документа.
+
+ 5. <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/> - Этот тег мета-информации указывает на
+                                                                           кодировку символов документа.
+
+ 6. <title>Пользователи</title> - Этот тег устанавливает заголовок страницы в браузере.
+
+ 7. <body> - Тег, обозначающий начало основной секции документа, в котором размещается содержимое страницы.
+
+ 8. <div> - Открывающий тег для создания блока содержимого.
+
+ 9. <table> - Элемент создания таблицы в HTML.
+
+ 10. <th> - Элемент, обозначающий ячейку заголовка в таблице.
+
+ 11. <th:block th:each="user : ${users}"> - Этот элемент Thymeleaf используется для каждой итерации списка пользователей
+                                            (users) в таблице.
+
+ 12. <td th:text="${user.id}"></td> - Элемент для отображения содержимого ячейки таблицы с использованием данных из
+                                      объекта "user".
+
+ 13. <a th:href="@{/edit(id=${user.id})}" th:text="Изменить"></a> - Элемент ссылки с динамически формируемым адресом для
+                                                                    редактирования пользователя.
+
+ 14. <form th:action="@{/delete/(id=${user.id})}" th:method="post"> - Элемент формы с динамически формируемым адресом
+                                                                      для удаления пользователя и указанием метода "post".
+
+ 15. <a href="add">Add new user</a> - Ссылка для добавления нового пользователя.
+
+         Код написан на языке HTML с использованием атрибутов Thymeleaf для динамической обработки данных и отображения
+         контента.-->
